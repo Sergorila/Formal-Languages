@@ -1,0 +1,11 @@
+c:\users\sidorovsa\source\repos\dfa\dfa\obj\Debug\netcoreapp2.0\dfa.csprojResolveAssemblyReference.cache
+c:\users\sidorovsa\source\repos\dfa\dfa\obj\Debug\netcoreapp2.0\dfa.csproj.CoreCompileInputs.cache
+c:\users\sidorovsa\source\repos\dfa\dfa\obj\Debug\netcoreapp2.0\dfa.AssemblyInfoInputs.cache
+c:\users\sidorovsa\source\repos\dfa\dfa\obj\Debug\netcoreapp2.0\dfa.AssemblyInfo.cs
+c:\users\sidorovsa\source\repos\dfa\dfa\bin\Debug\netcoreapp2.0\dfa.deps.json
+c:\users\sidorovsa\source\repos\dfa\dfa\bin\Debug\netcoreapp2.0\dfa.runtimeconfig.json
+c:\users\sidorovsa\source\repos\dfa\dfa\bin\Debug\netcoreapp2.0\dfa.runtimeconfig.dev.json
+c:\users\sidorovsa\source\repos\dfa\dfa\bin\Debug\netcoreapp2.0\dfa.dll
+c:\users\sidorovsa\source\repos\dfa\dfa\bin\Debug\netcoreapp2.0\dfa.pdb
+c:\users\sidorovsa\source\repos\dfa\dfa\obj\Debug\netcoreapp2.0\dfa.dll
+c:\users\sidorovsa\source\repos\dfa\dfa\obj\Debug\netcoreapp2.0\dfa.pdb

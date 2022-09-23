@@ -21,18 +21,18 @@ namespace dfa
                 foreach (var st in input)
                 {
                     State temp = new State();
-                    if (st.Contains("*"))
+                    if (st.Contains("&"))
                     {
                         temp.IsStartState = true;
-                        var st1 = st.Split("*");
+                        var st1 = st.Split("&");
                         temp.Name = st1[0];
                         _states.Add(temp);
                         continue;
                     }
-                    if (st.Contains("&"))
+                    if (st.Contains("*"))
                     {
                         temp.IsAcceptState = true;
-                        var st1 = st.Split("&");
+                        var st1 = st.Split("*");
                         temp.Name = st1[0];
                         _states.Add(temp);
                         continue;
@@ -60,6 +60,7 @@ namespace dfa
 
         public void ShowDFA()
         {
+            Console.Write("\t");
             foreach (var symbol in _alphabet)
             {
                 Console.Write("\t{0}", symbol);
@@ -68,15 +69,16 @@ namespace dfa
             Console.WriteLine();
             foreach (var state in _states)
             {
+                Console.Write("\t");
+                Console.Write(state.Name);
                 if (state.IsAcceptState)
-                {
-                    Console.Write("->");
-                }
-                if (state.IsStartState)
                 {
                     Console.Write("*");
                 }
-                Console.Write(state.Name);
+                if (state.IsStartState)
+                {
+                    Console.Write("->");
+                }
                 foreach (var trans in state.Transitions)
                 {
                     Console.Write("\t({0},{1})", trans.Key, trans.Value.Name);
@@ -87,23 +89,41 @@ namespace dfa
             
         }
 
+        public List<State> GetStartStates()
+        {
+            List<State> states = new List<State>();
+            foreach (var state in _states)
+            {
+                if (state.IsStartState)
+                {
+                    states.Add(state);
+                }
+            }
+
+            return states;
+        }
+
         public bool? Run(IEnumerable<char> s)
         {
             Console.WriteLine("Chain: {0}", s.ToString());
-            State current = _states[0];
-            foreach (var c in s) // цикл по всем символам 
+            var startStates = GetStartStates();
+            foreach (var state in startStates)
             {
-                Console.WriteLine("Symbol - {0}, current state - {1}, transition to state {2}", c, current.Name, current.Transitions[c].Name);
-                current = current.Transitions[c]; // меняем состояние на то, в которое у нас переход
-                if (current == null)              // если его нет, возвращаем признак ошибки
-                    return null;
-                // иначе переходим к следующему
+                var current = state;
+                foreach (var c in s)
+                {
+                    Console.WriteLine("Symbol - {0}, current state - {1}, transition to state {2}", c, current.Name, current.Transitions[c].Name);
+                    current = current.Transitions[c];
+                    if (current == null)              
+                        return null;
+                }
+                if (current.IsAcceptState)
+                {
+                    Console.WriteLine("True");
+                }
+                return current.IsAcceptState;
             }
-            if (current.IsAcceptState)
-            {
-                Console.WriteLine("True");
-            }
-            return current.IsAcceptState;         // результат true если в конце финальное состояние 
+            return null;
         }
     }
 }
